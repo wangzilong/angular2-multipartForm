@@ -1,5 +1,5 @@
 # angular2-multipartForm
-A project for Angular 2 apps.
+A project for Angular 2 apps to upload multipart/form-data.
 
 It is something similar to the [ng2-file-upload](https://github.com/valor-software/ng2-file-upload)  which only upload file.
 
