@@ -44,12 +44,12 @@ export class HomeComponent {
 		}
 
 		this.uploadCallback = (data) => {
-			console.debug("avatar.ts & uploadCallback() ==>");
+			console.debug("home.ts & uploadCallback() ==>");
 			this.file = null;
 			if (data){
-				console.debug("avatar.ts & uploadCallback() upload file success.");
+				console.debug("home.ts & uploadCallback() upload file success.");
 			}else{
-				console.error("avatar.ts & uploadCallback() upload file false.");
+				console.error("home.ts & uploadCallback() upload file false.");
 			}
 		}
 
