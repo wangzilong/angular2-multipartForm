@@ -41,12 +41,12 @@ this.upload = () => {
 			if (this.multipartItem.formData == null)
 				this.multipartItem.formData = new FormData();
 
-      // fill field of form into formData.
+      			// fill field of form into formData.
 			this.multipartItem.formData.append("email",  this.email);
 			this.multipartItem.formData.append("password",  this.password);
 			this.multipartItem.formData.append("file",  this.file);
       
-      // set callback function
+      			// set callback function
 			this.multipartItem.callback = this.uploadCallback;
 			
 			// upload
