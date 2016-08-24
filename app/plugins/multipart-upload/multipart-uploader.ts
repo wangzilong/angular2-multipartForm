@@ -5,6 +5,7 @@ export class MultipartUploader {
   public isUploading:boolean = false;
   public progress:number = 0;
   public isHTML5:boolean = true;
+  public timeout:number = 10000;
 
   constructor(public options:any) {
     // Object.assign(this, options);
@@ -63,6 +64,7 @@ export class MultipartUploader {
     console.debug("multipart-uploader.ts & _xhrTransport() ==>.");
 
     let xhr = item._xhr = new XMLHttpRequest();
+    xhr.timeout = this.timeout;
 
     //if (item.formData.length === 0){
     //  throw new TypeError('Invalid form,form is empty.');
@@ -85,6 +87,14 @@ export class MultipartUploader {
 
     xhr.onerror = () => {
       console.debug("multipart-uploader.ts & _xhrTransport.onerror() ==>");
+      let headers = this._parseHeaders(xhr.getAllResponseHeaders());
+      let response = this._transformResponse(xhr.response, headers);
+      this._onErrorItem(item, response, xhr.status, headers);
+      //this._onCompleteItem(item, response, xhr.status, headers);
+    };
+
+    xhr.ontimeout = () => {
+      console.debug("multipart-uploader.ts & _xhrTransport.ontimeout() ==>");
       let headers = this._parseHeaders(xhr.getAllResponseHeaders());
       let response = this._transformResponse(xhr.response, headers);
       this._onErrorItem(item, response, xhr.status, headers);
